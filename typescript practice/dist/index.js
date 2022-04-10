@@ -37,4 +37,4 @@ console.log(arrays.cut3(mixArr));
 console.log(numbers.sum(arrSum, myNum));
 console.log(strings.capitalize('the quick brown fox'));
 console.log(numbers.multiply('5', 8));
-console.log(arrays.lgNum(mixArr));
+// console.log(arrays.lgNum(mixArr));

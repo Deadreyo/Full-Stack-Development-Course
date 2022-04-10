@@ -1,7 +1,6 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "prettier": "prettier --config .prettierrc \"src/**/*.js\" --write",
@@ -17,5 +16,6 @@
     "prettier": "^2.6.2",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
-  }
+  },
+  "description": ""
 }
