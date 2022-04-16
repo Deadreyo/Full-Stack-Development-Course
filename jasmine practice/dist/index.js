@@ -55,7 +55,6 @@ function getCountry(country) {
                 case 0: return [4 /*yield*/, (0, axios_1.default)("https://restcountries.com/v2/name/".concat(country))];
                 case 1:
                     getApi = _a.sent();
-                    console.log("typeof: ", typeof getApi.data);
                     obj = { capital: getApi.data[0].capital,
                         region: getApi.data[0].region,
                         numericCode: getApi.data[0].numericCode
