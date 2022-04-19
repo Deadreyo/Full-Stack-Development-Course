@@ -1,13 +1,18 @@
 Welcome to my submission of Project 1 - Image Processing API
-
 This project resizes images to the desired width/height.
 
-It has 5 available images: image1, image2, image3, image4, image5.
+SCRIPTS: 
+    - start: starts the dev server.
+    - build: builds the project.
+    - jasmine: runs the tests
+    - test: builds the project and runs the tests.
 
-The list is also shown in /api page.
+ENDPOINTS:
+    - /api : Shows the names of the available images.
 
-To start, simply go to '/api/' followed by image name like 'image3' followed
-by the needed width and height '?width=#&height=#'
-Ex: '/api/image4?width=500&height=300'
+    - /api/:name?
+        Ex: '/api/image4?width=500&height=300'
+        It has 5 available images: image1, image2, image3, image4, image5.
+        width & height queries control the output dimensions. They are optional.
 
-@note: If width & height are not given, they will default to 400, 300.
+        @note: If width & height are not given, they will default to 400, 300.
