@@ -4,7 +4,7 @@ import api from './routes'
 const app = express()
 const PORT = 3000
 
-app.get('/', (req, res) => {
+app.get('/', (req: express.Request, res: express.Response): void => {
     res.send('sucess!')
 })
 

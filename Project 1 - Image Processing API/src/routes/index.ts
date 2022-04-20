@@ -3,7 +3,7 @@ import images from './api/images'
 
 const api = express.Router()
 
-api.get('/', (req, res) => {
+api.get('/', (req: express.Request, res: express.Response): void => {
     res.send(`
         <h3>Main Api Page</h3>
         <h4>Available Images:</h4>

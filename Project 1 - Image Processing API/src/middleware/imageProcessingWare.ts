@@ -7,7 +7,10 @@ import resize from '../utilities/resize'
 
 const fromDir = './images/full/'
 
-export default async function imageWare(req: Request, res: Response) {
+export default async function imageWare(
+    req: Request,
+    res: Response
+): Promise<void> {
     const originalPath = fromDir + req.params['name'] + '.jpg'
 
     if (existsSync(originalPath)) {
@@ -25,7 +28,6 @@ export default async function imageWare(req: Request, res: Response) {
             }
             res.sendFile(path.resolve(newPath))
         } catch (e) {
-            console.error('ERROR: ', e)
             res.send(`<h3>Server Internal Error!</h3><p>${e}</p>`)
         }
     } else {
