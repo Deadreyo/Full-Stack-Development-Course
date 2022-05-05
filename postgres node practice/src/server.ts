@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv';
+import { Pool } from 'pg';
+import { BookStore } from './models/book';
 
 dotenv.config();
 
@@ -23,4 +25,18 @@ dotenv.config();
 const { POSTGRES_HOST, POSTGRES_DB,
 POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
 
+const client = new Pool({
+    host: POSTGRES_HOST,
+    database: POSTGRES_DB,
+    user: POSTGRES_USER,
+    password: POSTGRES_PASSWORD
+})
+export default client;
+
+function doSomething() {
+    new BookStore().delete(2);
+    new BookStore().index()
+}
+// doSomething();
 console.log(POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD);
+
