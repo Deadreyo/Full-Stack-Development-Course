@@ -35,91 +35,117 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var book_1 = require("../../models/book");
-var storee = new book_1.BookStore();
-describe('Book Model', function () {
-    it('should have an index method', function () {
-        expect(storee.index).toBeDefined();
+exports.__esModule = true;
+// const store = new BookStore();
+var store = undefined;
+function index(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var books, e_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, store.index()];
+                case 1:
+                    books = _a.sent();
+                    if (books) {
+                        res.json(books);
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    e_1 = _a.sent();
+                    res.status(400);
+                    res.json(e_1 + "");
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
     });
-    it('should have a create method', function () {
-        expect(storee.create).toBeDefined();
+}
+function show(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, book, e_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    id = req.params.id;
+                    return [4 /*yield*/, store.find(+id)];
+                case 1:
+                    book = _a.sent();
+                    if (book) {
+                        res.json(book);
+                    }
+                    else {
+                        res.status(404).json("Not Found");
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    e_2 = _a.sent();
+                    res.status(500);
+                    res.json(e_2 + "");
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
     });
-    it('should be able to connect to database', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, storee.index()];
-                case 1:
-                    result = _a.sent();
-                    expect(result).toEqual([]);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('create method should add a book', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var book, books;
+}
+function create(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var book, created, e_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    book = {
-                        id: 1,
-                        title: "Test Book",
-                        author: "Test Author",
-                        total_pages: 100,
-                        type: "Test Type",
-                        summary: "Test Summary"
-                    };
-                    return [4 /*yield*/, storee.create(book)];
+                    _a.trys.push([0, 2, , 3]);
+                    book = req.body;
+                    return [4 /*yield*/, store.create(book)];
                 case 1:
-                    _a.sent();
-                    return [4 /*yield*/, storee.index()];
+                    created = _a.sent();
+                    res.json("Sucessfully created...");
+                    return [3 /*break*/, 3];
                 case 2:
-                    books = _a.sent();
-                    expect(books).toEqual([book]);
-                    return [2 /*return*/];
+                    e_3 = _a.sent();
+                    res.status(400);
+                    res.json(e_3 + "");
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
-    }); });
-    it('update method should update the book', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var book, books;
+    });
+}
+function Delete(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, deleted, e_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    book = {
-                        id: 1,
-                        title: "New title",
-                        author: "New Author",
-                        total_pages: 100,
-                        type: "Test Type",
-                        summary: "Test Summary"
-                    };
-                    return [4 /*yield*/, storee.update(book)];
+                    _a.trys.push([0, 2, , 3]);
+                    id = req.params.id;
+                    return [4 /*yield*/, store["delete"](+id)];
                 case 1:
-                    _a.sent();
-                    return [4 /*yield*/, storee.index()];
+                    deleted = _a.sent();
+                    if (deleted) {
+                        res.send("deleted...");
+                    }
+                    else {
+                        res.status(404).json("Not Found");
+                    }
+                    return [3 /*break*/, 3];
                 case 2:
-                    books = _a.sent();
-                    expect(books).toEqual([book]);
-                    return [2 /*return*/];
+                    e_4 = _a.sent();
+                    console.log(e_4);
+                    res.status(400);
+                    res.json(e_4 + "");
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
-    }); });
-    it('should delete the book', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var id, books;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    id = 1;
-                    return [4 /*yield*/, storee.delete(id)];
-                case 1:
-                    _a.sent();
-                    return [4 /*yield*/, storee.index()];
-                case 2:
-                    books = _a.sent();
-                    expect(books).toEqual([]);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-});
+    });
+}
+function bookRoutes(app) {
+    app.get('/books', index);
+    app.get('/books/:id', show);
+    app.post('/books', create);
+    app["delete"]('/books/:id', Delete);
+}
+exports["default"] = bookRoutes;

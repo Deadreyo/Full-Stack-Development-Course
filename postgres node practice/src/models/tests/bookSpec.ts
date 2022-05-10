@@ -1,16 +1,17 @@
-import { Book, BookStore } from "../book";
+import { Book, BookStore } from "../../models/book";
 
-const store = new BookStore();
+const storee = new BookStore();
 
 describe('Book Model', () => {
+    
     it('should have an index method', () => {
-        expect(store.index).toBeDefined();
+        expect(storee.index).toBeDefined();
     })
     it('should have a create method', () => {
-        expect(store.create).toBeDefined();
+        expect(storee.create).toBeDefined();
     })
     it('should be able to connect to database', async () => {
-        const result = await store.index()
+        const result = await storee.index()
         expect(result).toEqual([]);
     })
     it('create method should add a book', async () => {
@@ -22,8 +23,8 @@ describe('Book Model', () => {
             type: "Test Type",
             summary: "Test Summary"
         }
-        await store.create(book);
-        const books = await store.index();
+        await storee.create(book);
+        const books = await storee.index();
         expect(books).toEqual([book]);
     })
     it('update method should update the book', async () => {
@@ -35,14 +36,14 @@ describe('Book Model', () => {
             type: "Test Type",
             summary: "Test Summary"
         }
-        await store.update(book);
-        const books = await store.index();
+        await storee.update(book);
+        const books = await storee.index();
         expect(books).toEqual([book]);
     })
     it('should delete the book', async () => {
         const id = 1;
-        await store.delete(id);
-        const books = await store.index();
+        await storee.delete(id);
+        const books = await storee.index();
         expect(books).toEqual([]);
     })
 })

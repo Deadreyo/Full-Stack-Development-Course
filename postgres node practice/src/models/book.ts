@@ -16,7 +16,6 @@ export class BookStore {
             const sql = `SELECT * FROM books;`
             const result = await con.query(sql)
             con.release();
-            // console.log(result.rows)
             return result.rows
         } catch(e) {
             throw new Error("Error fetching books "+e);
@@ -49,13 +48,14 @@ export class BookStore {
         }
     }
 
-    async delete(id: number): Promise<void> {
+    async delete(id: number): Promise<Book> {
         try{
             const con = await client.connect();
             const sql = `DELETE FROM books WHERE id = $1 RETURNING *;`
             const result = await con.query(sql, [id])
             console.log("Book deleted: ", result.rows[0])
             con.release();
+            return result.rows[0]
         } catch(e) {
             throw new Error("Error deleting book "+e);
         }
@@ -69,6 +69,7 @@ export class BookStore {
             con.release();
             return result.rows[0]
         } catch(e) {
+            console.log(e)
             throw new Error("Error finding book "+e);
         }
     }

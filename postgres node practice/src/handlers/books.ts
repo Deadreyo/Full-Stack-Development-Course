@@ -1,7 +1,8 @@
-import { BookStore } from "../models/book";
+import { Book, BookStore } from "../models/book";
 import { Request, Response, Application } from "express";
 
-const store = new BookStore();
+// const store = new BookStore();
+const store = undefined as unknown as BookStore;
 
 async function index(req: Request, res: Response) {
     try{
@@ -11,7 +12,7 @@ async function index(req: Request, res: Response) {
         }
     } catch(e) {
         res.status(400)
-        res.json(e.message)
+        res.json(e+"")
     }
 }
 
@@ -21,41 +22,39 @@ async function show(req: Request, res: Response) {
         const book = await store.find(+id)
         if(book) {
             res.json(book);
+        } else {
+            res.status(404).json("Not Found")
         }
     } catch(e) {
-        res.status(400)
-        res.json(e.message)
+        res.status(500)
+        res.json(e+"")
     }
 }
 
 async function create(req: Request, res: Response) {
     try{
-        // const book = await store.create({
-        //     author: ,
-        //     summary: ,
-        //     title: ,
-        //     total_pages: ,
-        //     type: ,
-        //     id: 0,
-        // })
-        // if(book) {
-            res.send("created...");
-        // }
+        const book = req.body as Book
+        const created = await store.create(book)
+        res.json("Sucessfully created...");
     } catch(e) {
         res.status(400)
-        res.json(e.message)
+        res.json(e+"")
     }
 }
 
 async function Delete(req: Request, res: Response) {
     try{
         const {id} = req.params;
-        await store.delete(+id)
-        res.send("deleted...");
+        const deleted = await store.delete(+id)
+        if(deleted) {
+            res.send("deleted...");
+        } else {
+            res.status(404).json("Not Found")
+        }
     } catch(e) {
         console.log(e)
         res.status(400)
-        res.json(e.message)
+        res.json(e+"")
     }
 }
 

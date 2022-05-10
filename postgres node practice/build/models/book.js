@@ -59,7 +59,6 @@ var BookStore = /** @class */ (function () {
                     case 2:
                         result = _a.sent();
                         con.release();
-                        // console.log(result.rows)
                         return [2 /*return*/, result.rows];
                     case 3:
                         e_1 = _a.sent();
@@ -135,7 +134,7 @@ var BookStore = /** @class */ (function () {
                         result = _a.sent();
                         console.log("Book deleted: ", result.rows[0]);
                         con.release();
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, result.rows[0]];
                     case 3:
                         e_4 = _a.sent();
                         throw new Error("Error deleting book " + e_4);
@@ -162,6 +161,7 @@ var BookStore = /** @class */ (function () {
                         return [2 /*return*/, result.rows[0]];
                     case 3:
                         e_5 = _a.sent();
+                        console.log(e_5);
                         throw new Error("Error finding book " + e_5);
                     case 4: return [2 /*return*/];
                 }
