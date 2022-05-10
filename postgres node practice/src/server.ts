@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
 import { BookStore } from './models/book';
+import bookRoutes from './handlers/books';
 
 dotenv.config();
 
@@ -38,5 +39,7 @@ function doSomething() {
     new BookStore().index()
 }
 // doSomething();
+
+bookRoutes(app);
 console.log(POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD);
 
