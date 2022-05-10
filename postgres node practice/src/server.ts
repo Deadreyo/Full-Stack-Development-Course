@@ -20,22 +20,19 @@ app.listen(3000, function () {
     console.log(`starting app on: ${address}`)
 })
 
-
-dotenv.config();
-
 const { POSTGRES_HOST, POSTGRES_DB,
-POSTGRES_USER, POSTGRES_PASSWORD } = process.env;
+POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB_TEST, ENV } = process.env;
 
 const client = new Pool({
     host: POSTGRES_HOST,
-    database: POSTGRES_DB,
+    database: ENV=="dev"? POSTGRES_DB : POSTGRES_DB_TEST,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD
 })
 export default client;
 
 function doSomething() {
-    new BookStore().delete(2);
+    // new BookStore().delete(2);
     new BookStore().index()
 }
 // doSomething();

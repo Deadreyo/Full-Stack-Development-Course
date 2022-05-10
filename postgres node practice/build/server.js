@@ -2,16 +2,16 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var pg_1 = require("pg");
 var book_1 = require("./models/book");
-dotenv_1["default"].config();
-var app = (0, express_1["default"])();
+dotenv_1.default.config();
+var app = (0, express_1.default)();
 var address = "0.0.0.0:3000";
-app.use(body_parser_1["default"].json());
+app.use(body_parser_1.default.json());
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
@@ -25,7 +25,7 @@ var client = new pg_1.Pool({
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD
 });
-exports["default"] = client;
+exports.default = client;
 function doSomething() {
     // new BookStore().delete(2);
     new book_1.BookStore().index();
