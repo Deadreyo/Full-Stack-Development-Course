@@ -16,7 +16,7 @@ export class BookStore {
             const sql = `SELECT * FROM books;`
             const result = await con.query(sql)
             con.release();
-            console.log(result.rows)
+            // console.log(result.rows)
             return result.rows
         } catch(e) {
             throw new Error("Error fetching books "+e);
