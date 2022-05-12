@@ -36,8 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-// const store = new BookStore();
-var store = undefined;
+var book_1 = require("../models/book");
+var store = new book_1.BookStore();
+// const store = undefined as unknown as BookStore;
 function index(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var books, e_1;
