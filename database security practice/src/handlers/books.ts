@@ -1,5 +1,6 @@
 import { Book, BookStore } from "../models/book";
 import { Request, Response, Application } from "express";
+import verifyAuthToken from "../middleware/AuthToken";
 
 const store = new BookStore();
 // const store = undefined as unknown as BookStore;
@@ -61,6 +62,6 @@ async function Delete(req: Request, res: Response) {
 export default function bookRoutes(app: Application) {
     app.get('/books', index);
     app.get('/books/:id', show);
-    app.post('/books', create);
-    app.delete('/books/:id', Delete)
+    app.post('/books', verifyAuthToken, create);
+    app.delete('/books/:id', verifyAuthToken, Delete)
 }

@@ -1,4 +1,4 @@
-import { Book, BookStore } from "../../models/book";
+import { Book, BookStore } from "../user";
 
 const storee = new BookStore();
 

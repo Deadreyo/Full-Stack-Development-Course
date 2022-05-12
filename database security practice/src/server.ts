@@ -2,7 +2,8 @@ import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
-import { BookStore } from './models/book';
+import { UserStore } from './models/user';
+import userRoutes from './handlers/users';
 import bookRoutes from './handlers/books';
 
 dotenv.config();
@@ -51,11 +52,12 @@ if(ENV=="dev") {
 export default client;
 
 function doSomething() {
-    // new BookStore().delete(2);
-    new BookStore().index()
+    // new UserStore().delete(2);
+    new UserStore().index()
 }
 // doSomething();
 
+userRoutes(app);
 bookRoutes(app);
 console.log(POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD);
 
