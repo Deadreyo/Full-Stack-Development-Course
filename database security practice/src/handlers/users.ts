@@ -1,4 +1,4 @@
-import { User, UserStore } from "../models/user";
+import { User, UserStore } from "../models/userModel";
 import { Request, Response, Application } from "express";
 import jwt from 'jsonwebtoken'
 import verifyAuthToken from "../middleware/AuthToken";

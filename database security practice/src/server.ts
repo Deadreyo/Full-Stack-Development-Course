@@ -2,9 +2,10 @@ import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
-import { UserStore } from './models/user';
+import { UserStore } from './models/userModel';
 import userRoutes from './handlers/users';
 import bookRoutes from './handlers/books';
+import ordersRoutes from './handlers/orders';
 
 dotenv.config();
 
@@ -59,5 +60,6 @@ function doSomething() {
 
 userRoutes(app);
 bookRoutes(app);
+ordersRoutes(app);
 console.log(POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD);
 
