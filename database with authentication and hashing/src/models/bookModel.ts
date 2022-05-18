@@ -10,6 +10,9 @@ export type Book = {
 }
 
 export class BookStore {
+    constructor() {
+        console.log("BookStore created")
+    }
     async index(): Promise<Book[]> {
         try{
             const con = await client.connect()

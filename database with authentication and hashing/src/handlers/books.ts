@@ -2,8 +2,8 @@ import { Book, BookStore } from "../models/bookModel";
 import { Request, Response, Application } from "express";
 import verifyAuthToken from "../middleware/AuthToken";
 
-// const store = new BookStore();
-const store = undefined as unknown as BookStore;
+const store = new BookStore();
+// const store = undefined as unknown as BookStore;
 
 async function index(req: Request, res: Response) {
     try{
